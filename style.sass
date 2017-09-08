@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500,700')
+
+// ALLGEMEIN
+
+*
+  margin: 0
+  padding: 0
+
+button
+  background: transparent
+  border: none
+  border-bottom: 2px solid rgba(200,0,0,1)
+  margin-top: 20px
+  letter-spacing: .45px
+
+  // BODY
+
+body
+  overflow-x: hidden
+  font-family: 'Raleway', sans-serif
+  width: 100vw
+
+  // HEADER
+
+  header
+    border-bottom: 1px solid rgba(0,0,0,.4)
+
+    .wrapper
+      display: flex
+      align-items: center
+      justify-content: space-between
+      max-width: 550px
+      margin: 0 auto
+      padding: 10px
+
+      & > h1
+        margin-left: 10px
+
+        font-family: 'Playfair Display', serif
+
+      .menu
+        margin: 0 10px 0 0
+        height: 30px
+        width: 30px
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+
+        span
+          height: 2px
+          width: 100%
+          background: black
+          display: block
+          margin-top: 5px
+          // position: absolute
+          //
+          // &:nth-child(2)
+          //   top: 6px
+          //
+          // &:nth-child(3)
+          //   top: 12px
+
+  // HERO
+
+  .hero
+    height: 300px
+    width: 100%
+    padding-left: 10px
+
+    background: url(trinken.jpg)
+      size: cover
+      position: center
+
+    color: rgba(255,255,255,1)
+
+    .wrapper
+      max-width: 550px
+      height: 100%
+      margin: 0 auto
+
+      display: flex
+      // align-items: center
+      justify-content: space-around
+      flex-direction: column
+
+      h1
+        margin-top: 10px
+        margin-left: 10px
+        margin-bottom: -30px
+
+      button
+        background: transparent
+        border: none
+        color: rgba(255,255,255,.8)
+
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
+
+  // GETRÄNKE
+
+  .getranke
+    height: 200px
+    margin: 0 10px
+
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+
+    p
+      font-size: 24px
+      text-align: center
+
+    button
+      margin-top: 13px
+
+  // BLOCK
+
+  .block
+    height: 250px
+    width: 100vw
+    border-bottom: 1px solid transparentize(#838481, .7)
+
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    .thumbnail
+      width: calc(100vw * .4)
+      height: 100%
+
+      background:
+        size: cover
+        position: center
+
+      &.one
+        background: url(brauerei.jpg)
+          position: -110px 0px
+
+      &.two
+        background: url(brauer2.jpg)
+
+    &.one
+      border-top: 1px solid transparentize(#838481, .7)
+
+      .text
+        padding-right: calc((100vw - 550px) / 2)
+
+    &.two
+      .text
+        padding-left: calc((100vw - 550px) / 2)
+
+// SLIDER
+
+.quote-slider
+	width: 100%
+	height: 200px
+	list-style: none
+	display: block
+	position: relative
+
+	li
+		display: inline-block
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		right: -60%
+		width: 60%
+		font-weight: 700
+		z-index: 5
+
+		.site
+      text-transform: uppercase
+      font-size: 12px
+      margin-top: 10px
+      font-weight: 100
+
+@media only screen and (max-width:420px)
+  .block
+    height: 400px !important
+
+    flex-direction: column
+
+    .thumbnail
+      width: 100vw !important
+      order: 1
+
+    .text
+      margin: 30px
+      order: 2
+
+
+  // KARTE
+
+// Sektion - Karte
+
+$color-1: #2d313f  // blue
+$color-2: red  // red
+$color-3: #ffffff  // white
+
+// layout - breakpoints
+
+$S:     320px
+$M:     768px
+$L:     1170px
+
+// layout - media queries
+
+@mixin MQ($canvas)
+  @if $canvas == S
+   @media only screen and (min-width: $S) {  @content}
+
+  @else if $canvas == M
+   @media only screen and (min-width: $M) {  @content}
+
+  @else if $canvas == L
+   @media only screen and (min-width: $L)  { @content}
+
+
+
+// /* --------------------------------
+//
+// Main components
+//
+// -------------------------------- */
+
+
+
+#google-container
+    position: relative
+    width: 100%
+    height: 40vh
+    min-height: 300px
+
+#cd-google-map
+  position: relative
+
+#cd-zoom-in, #cd-zoom-out
+	height: 32px
+	width: 32px
+	cursor: pointer
+  transition: all 3s ease-in-out
+	margin-left: 10px
+	background-color: rgba($color-2, .8)
+	background-repeat: no-repeat
+	background-size: 32px 64px
+	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-controller.svg')
+
+	&:hover
+		background-color: rgba($color-2, 1)
+
+	@include MQ(M)
+		margin-left: 50px
+
+#cd-zoom-in
+	background-position: 50% 0
+	margin-top: 10px
+	margin-bottom: 1px
+
+	@include MQ(M)
+		margin-top: 50px
+
+
+
+#cd-zoom-out
+	background-position: 50% -32px
+
+
+// $speed: 300ms
+//
+// .page-wrapper
+// 	width: 100vw
+// 	height: 100vh
+// 	background-color: black
+// 	position: relative
+//   overflow: hidden
+//
+// 	.animation-wrapper
+// 		width: 100%
+// 		height: 100%
+// 		position: relative
+//     overflow: hidden
+//
+// 		.animation-container
+// 			width: 100vw
+// 			height: 100vh
+// 			display: flex
+// 			justify-content: center
+// 			align-items: center
+// 			position: absolute
+// 			top: 0
+// 			left: 0
+//       overflow: hidden
+//
+// 			@for $i from 1 through 6
+// 				&:nth-child(#{$i}) > span
+// 					animation-delay: $speed * $i - $speed
+//
+// 			.stay
+//         width: 95%
+//         margin: 0 0
+//         animation: inStay 3s forwards
+//         font-family: 'Playfair Display', serif
+//         letter-spacing: 1
+//
+// 			> span
+// 				color: white
+// 				font:
+// 					family: 'Montserrat', sans-serif
+// 					size: 60px
+// 				text-transform: uppercase
+// 				transform: translateY(-30px)
+// 				opacity: 0
+// 				animation: in $speed forwards
+// 				display: block
+// 				text-align: center
+//
+// 				@media screen and (max-width:768px)
+// 					font-size: 48px
+//
+// 				@media screen and (max-width:475px)
+// 					font-size: 36px
+//
+// 				@media screen and (max-width:375px)
+// 					font-size: 30px
+//
+// 	.skip
+// 		color: white
+// 		font:
+// 			size: 14px
+// 		text:
+// 			transform: uppercase
+// 			decoration: none
+// 		position: absolute
+// 		bottom: 40px
+// 		right: 40px
+// 		display: block
+// 		padding-top: 10px
+// 		border-top: 2px solid white
+// 		opacity: 0.5
+//
+// 		&:hover
+// 			opacity: 1.0
+//
+// 	.logo-container
+// 		position: absolute
+// 		top: 0
+// 		left: 40px
+// 		background-color: rgba(white,0.15)
+// 		display: block
+// 		padding: 20px
+//
+// 		.logo
+// 			display: block
+// 			width: 180px
+// 			border: none
+//
+// 	.find-out-button
+// 		color: white
+// 		font-size: 20px
+// 		text-decoration: none
+// 		padding: 10px 20px
+// 		border: 2px solid white
+// 		display: block
+// 		margin: 40px auto auto
+// 		max-width: 120px
+// 		opacity: 0.5
+//
+// 		&:hover
+// 			opacity: 1.0
+//
+// @keyframes in
+// 	0%
+// 		transform: scale(1.2)
+// 		opacity: 0
+// 	50%
+// 		transform: scale(1)
+// 		opacity: 1
+// 	100%
+// 		transform: scale(.8)
+// 		opacity: 0
+//
+// @keyframes inStay
+// 	0%
+// 		transform: scale(1.1) translateY(0px)
+// 		opacity: 0
+//
+//   50%
+//     transform: scale (1) translateY(110px)
+//     opacity: 1
+//
+//   90%
+//     transform: scale(1) translateY(100px)
+//     opacity: 1
+//
+// 	100%
+// 		transform: scale(1) translateY(0px)
+// 		opacity: 1
